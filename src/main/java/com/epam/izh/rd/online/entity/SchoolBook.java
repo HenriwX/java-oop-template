@@ -5,7 +5,7 @@ import java.util.Objects;
 
 /**
  * Сущность учебника. Он должен быть унаследован от сущности Book
- *
+ * <p>
  * Необходимо:
  * 1) Унаследовать данный класс от класса Book
  * 2) Создать список полей с указанными типами ровно в этом порядке:
@@ -20,5 +20,63 @@ import java.util.Objects;
  * 6) Переопределить метод toString с выводом всех полей (не забывайте alt+inset)
  */
 public class SchoolBook extends Book {
+    private String authorName;
+    private String authorLastName;
+    private LocalDate publishDate;
 
+    public SchoolBook() {
+    }
+
+    public SchoolBook(int numberOfPages, String name, String authorName, String authorLastName, LocalDate publishDate) {
+        super(numberOfPages, name);
+        this.authorName = authorName;
+        this.authorLastName = authorLastName;
+        this.publishDate = publishDate;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public String getAuthorLastName() {
+        return authorLastName;
+    }
+
+    public LocalDate getPublishDate() {
+        return publishDate;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public void setAuthorLastName(String authorLastName) {
+        this.authorLastName = authorLastName;
+    }
+
+    public void setPublishDate(LocalDate publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SchoolBook)) return false;
+        SchoolBook that = (SchoolBook) o;
+        return Objects.equals(getAuthorName(), that.getAuthorName()) && Objects.equals(getAuthorLastName(), that.getAuthorLastName()) && Objects.equals(getPublishDate(), that.getPublishDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAuthorName(), getAuthorLastName(), getPublishDate());
+    }
+
+    @Override
+    public String toString() {
+        return "SchoolBook{" +
+                "authorName='" + authorName + '\'' +
+                ", authorLastName='" + authorLastName + '\'' +
+                ", publishDate=" + publishDate +
+                '}';
+    }
 }
